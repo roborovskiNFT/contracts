@@ -5,8 +5,8 @@ import "@openzeppelin/contracts/access/Ownable.sol";
 
 abstract contract RoborovskiTeam is Ownable {
     address[] private _team = [
-        0x8cb7Da476cef0882e75d7e335BCB9a7B7a1E94B9, // TODO
-        0xD513072998e38FC66d715357fb2D09c544F648cb // TODO
+        0xA28F5fD46DC3C9b4399492fF81827983F2555600,
+        0xBd0AD46710D75Fb936F01aA5DBEA6Eeb8845C1d0
     ];
 
     event Withdrawed(address indexed recipient, uint256 amount);

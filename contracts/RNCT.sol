@@ -11,8 +11,8 @@ import "./interfaces/IRoboShort.sol";
 contract RNCT is Ownable, RecoverableErc20ByOwner, ERC20, ERC20Burnable, ERC20Permit {
     address public ROBO;
     uint256 public constant BONUS = 1830 ether;
-    uint256 public constant EMISSION_START = 1644978570; // TODO
-    uint256 public constant EMISSION_END = 1960338570; // TODO // 1644978570+10*365*86400
+    uint256 public constant EMISSION_START = 1645279170;
+    uint256 public constant EMISSION_END = 1960639170;
     uint256 public constant EMISSION_RATE = 10 ether / uint256(86400);
     mapping(uint256 => uint256) private _lastClaim;
 
@@ -20,7 +20,7 @@ contract RNCT is Ownable, RecoverableErc20ByOwner, ERC20, ERC20Burnable, ERC20Pe
         ERC20("Roborovski NameChangeToken", "RNCT")
         ERC20Permit("Roborovski NameChangeToken")
     {
-        _mint(_msgSender(), 1000000 ether); // TODO
+        _mint(_msgSender(), 1000000 ether);
     }
 
     function lastClaim(uint256 tokenId) public view returns (uint256) {
@@ -49,6 +49,21 @@ contract RNCT is Ownable, RecoverableErc20ByOwner, ERC20, ERC20Burnable, ERC20Pe
             total = total + bonus;
         }
 
+        return total;
+    }
+
+    function accumulatedBatch(uint256[] memory tokenIds) public view returns (uint256) {
+        uint256 total = 0;
+        for (uint256 i = 0; i < tokenIds.length; i++) {
+            for (uint256 j = i + 1; j < tokenIds.length; j++) {
+                require(tokenIds[i] != tokenIds[j], "RNCT: duplicate tokenId");
+            }
+
+            uint256 amount = accumulated(tokenIds[i]);
+            if (amount != 0) {
+                total = total + amount;
+            }
+        }
         return total;
     }
 

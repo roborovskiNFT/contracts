@@ -25,15 +25,15 @@ abstract contract RoborovskiErc721 is
     // Metadata
     string private _name = "ROBOROVSKI";
     string private _symbol = "ROBO";
-    string private _contractURI = "https://roborovski.org/metadata/contract.json"; // TODO
-    string private _baseURI = "https://roborovski.org/metadata/"; // TODO
+    string private _contractURI = "https://ipfs.io/ipfs/QmXHfdENe1vLPn2g6BP7KnvnhgXGMekst3YaP49hYjXbFY";
+    string private _baseURI = "";
     string private _baseExtension = ".json";
     bool private _revealed = false;
-    string private _notRevealedURI = "https://roborovski.org/metadata/notrevealed.json"; // TODO
+    string private _notRevealedURI = "https://ipfs.io/ipfs/QmUCSUQPJuvLbm7ymJ3BFfAc9CYMqCbBX9hoMFQQvP3iTa";
     mapping(uint256 => string) private _tokenURIs;
 
     // Balances
-    uint256 public constant MAX_SUPPLY = 10000; // TODO
+    uint256 internal constant MAX_SUPPLY = 10000;
     uint256 private _total;
     address[MAX_SUPPLY + 1] private _owners;
 
